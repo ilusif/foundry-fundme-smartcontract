@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 
-
 pragma solidity 0.8.19;
 
 import {DeployFundMe} from "../../script/DeployFundMe.s.sol";
@@ -17,13 +16,11 @@ contract InteractionsTest is Test {
 
     address alice = makeAddr("alice");
 
-
     function setUp() external {
         deployFundMe = new DeployFundMe();
         fundMe = deployFundMe.run();
         vm.deal(alice, STARTING_USER_BALANCE);
     }
-    
 
     function testUserCanFundAndOwnerWithdraw() public {
         uint256 preUserBalance = address(alice).balance;

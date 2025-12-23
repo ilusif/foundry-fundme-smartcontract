@@ -10,7 +10,7 @@ error FundMe_NotOwner();
 contract FundMe {
     using PriceConverter for uint256;
 
-  // Type Declarations
+    // Type Declarations
     using PriceConverter for uint256;
 
     // State variables
@@ -44,17 +44,16 @@ contract FundMe {
 
     function cheaperWithdraw() public onlyOwner {
         uint256 fundersLength = s_funders.length;
-        for(uint256 funderIndex = 0; funderIndex < fundersLength; funderIndex++) {
+        for (uint256 funderIndex = 0; funderIndex < fundersLength; funderIndex++) {
             address funder = s_funders[funderIndex];
             s_addressToAmountFunded[funder] = 0;
-             (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
-        require(callSuccess, "Call failed");
+            (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
+            require(callSuccess, "Call failed");
         }
     }
 
     function withdraw() public onlyOwner {
-        for (uint256 funderIndex = 0; funderIndex < s_funders.length; funderIndex++) 
-        {
+        for (uint256 funderIndex = 0; funderIndex < s_funders.length; funderIndex++) {
             address funder = s_funders[funderIndex];
             s_addressToAmountFunded[funder] = 0;
         }
@@ -90,14 +89,11 @@ contract FundMe {
         fund();
     }
 
-
     /**
- * View/ Pure functions:
- */
-function getAddressToAmountFunded(
-       address fundingAddress
-    ) public view returns (uint256) {
-       return s_addressToAmountFunded[fundingAddress];
+     * View/ Pure functions:
+     */
+    function getAddressToAmountFunded(address fundingAddress) public view returns (uint256) {
+        return s_addressToAmountFunded[fundingAddress];
     }
 
     function getFunder(uint256 index) external view returns (address) {
@@ -108,8 +104,6 @@ function getAddressToAmountFunded(
         return i_owner;
     }
 }
-
-
 
 // Concepts we didn't cover yet (will cover in later sections)
 // 1. Enum
