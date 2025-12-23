@@ -86,7 +86,7 @@ contract FundMeTest is Test {
         // Arrange
         uint160 numberOfFunders = 10;
         uint160 startingFunderIndex = 1;
-        for (uint160 i = startingFunderIndex; // vm.prank new address i < numberOfFunders; i++) {
+        for (uint160 i = startingFunderIndex; i < numberOfFunders; i++) {
             // vm.deal new address
             // address(1)
             hoax(address(i), SEND_VALUE);
@@ -111,7 +111,7 @@ contract FundMeTest is Test {
         // Arrange
         uint160 numberOfFunders = 10;
         uint160 startingFunderIndex = 1;
-        for (uint160 i = startingFunderIndex; // vm.prank new address i < numberOfFunders; i++) {
+        for (uint160 i = startingFunderIndex; i < numberOfFunders; i++) {
             // vm.deal new address
             // address(1)
             hoax(address(i), SEND_VALUE);
@@ -132,3 +132,4 @@ contract FundMeTest is Test {
         assert(startingFundMeBalance + startingOwnerBalance == fundMe.getOwner().balance);
     }
 }
+
